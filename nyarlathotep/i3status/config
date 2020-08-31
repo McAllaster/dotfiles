@@ -1,0 +1,41 @@
+general {
+  colors = true
+  interval = 1
+  color_good = '#99C794'
+  color_degraded = '#FAC863'
+  color_bad = '#EC5F67'
+}
+
+order += "disk /"
+disk "/" {
+  format = "Disk /: %free / %total"
+}
+
+order += "memory"
+memory {
+  format = "Memory: %free / %total"
+}
+
+order += "cpu_usage"
+cpu_usage {
+  format = "Load: %usage"
+}
+
+order += "cpu_temperature 0"
+cpu_temperature 0 {
+  format = "CPU: %degrees °C"
+  path = "~/.cpu_temperature"
+  max_threshold = 80
+}
+
+order += "cpu_temperature 1"
+cpu_temperature 1 {
+  format = "GPU: %degrees °C"
+  path = "~/.gpu_temperature"
+  max_threshold = 100
+}
+
+order += "tztime local"
+tztime local {
+  format = "%a, %d %B %l:%M %p"
+}
