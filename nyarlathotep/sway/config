@@ -1,0 +1,153 @@
+# See `man 5 sway` for a complete reference.
+
+#   ad88888ba                                                
+#  d8"     "8b                                               
+#  Y8,                                                       
+#  `Y8aaaaa,    8b      db      d8  ,adPPYYba,  8b       d8  
+#    `"""""8b,  `8b    d88b    d8'  ""     `Y8  `8b     d8'  
+#          `8b   `8b  d8'`8b  d8'   ,adPPPPP88   `8b   d8'   
+#  Y8a     a8P    `8bd8'  `8bd8'    88,    ,88    `8b,d8'    
+#   "Y88888P"       YP      YP      `"8bbdP"Y8      Y88'     
+#                                                   d8'      
+#                                                  d8'
+
+### Variables
+
+set $left j
+set $down k
+set $up l
+set $right semicolon
+set $mod Mod4
+
+set $term kitty
+set $menu wofi --show drun
+set $lock swaylock -i /usr/share/pixmaps/nordic_night.jpg
+
+### Output
+
+output * bg /usr/share/pixmaps/nordic_mountains.jpg fill
+output DP-1 mode 2560x1440@164.998993Hz
+
+### Input
+
+input "1133:50184:Logitech_USB_Trackball" {
+  middle_emulation enabled
+  scroll_method on_button_down
+  scroll_button button3
+  natural_scroll enabled
+}
+
+input "8916:4901:Mionix_Naos_7000" {
+  accel_profile flat
+  pointer_accel 0
+}
+
+input "1133:16495:Logitech_MX_Ergo" {
+  accel_profile flat
+  pointer_accel 0
+}
+
+### Key bindings
+
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+floating_modifier $mod normal
+bindsym $mod+Shift+c reload
+
+# Movement
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Workspaces 
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Layout
+bindsym $mod+h splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+### Modes
+
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+set $mode_system System: exit (e), lock (l), suspend (s), reboot (r), shutdown (Shift+s)
+
+mode "$mode_system" {
+  bindsym e exec --no-startup-id swaymsg exit, mode "default"
+  bindsym l exec --no-startup-id $lock, mode "default"
+  bindsym s exec --no-startup-id $lock && loginctl suspend, mode "default"
+  bindsym r exec --no-startup-id loginctl reboot, mode "default"
+  bindsym Shift+s exec --no-startup-id loginctl poweroff -i, mode "default"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+e mode "$mode_system"
+
+### Bar
+
+bar {
+  swaybar_command waybar
+}
+
+### Style
+
+font pango:monospace 10
+
+# Colors                Border  Backgr. Text    Indic.  Child
+client.focused          #88c0d0 #88c0d0 #2e3440 #b48ead #88c0d0
+client.focused_inactive #434c5e #434c5e #d8dee9 #434c5e #434c5e
+client.unfocused        #3b4252 #3b4252 #d8dee9 #3b4252 #3b4252
+client.urgent           #bf616a #bf616a #2e3440 #bf616a #bf616a
+client.placeholder      #4c566a #4c566a #d8dee9 #4c566a #4c566a
+client.background       #2e3440
+
+default_border pixel 5
+gaps inner 10
