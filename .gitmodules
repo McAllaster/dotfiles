@@ -19,3 +19,6 @@
 [submodule "common/neovim/pack/plugins/start/vim-polyglot"]
 	path = common/neovim/pack/plugins/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "common/neovim/pack/plugins/start/--force"]
+	path = common/neovim/pack/plugins/start/--force
+	url = git@github.com:fatih/vim-go.git

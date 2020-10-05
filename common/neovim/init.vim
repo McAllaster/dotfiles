@@ -41,7 +41,11 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Ale
-let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_fixers = {
+      \  'javascript': ['eslint'],
+      \  'go': ['gofmt']
+      \}
+
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '!'
@@ -52,3 +56,8 @@ let g:airline_theme='nord'
 " Keymapping
 noremap <C-s> :setlocal spell spelllang=en_us<CR>
 noremap <C-a> :set nospell<CR>
+noremap <C-h> :Explore<CR>
+
+" go-vim
+let g:go_def_mode="gopls"
+let g:go_info_mode="gopls"
