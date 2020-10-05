@@ -126,9 +126,9 @@ set $mode_system System: exit (e), lock (l), suspend (s), reboot (r), shutdown (
 mode "$mode_system" {
   bindsym e exec --no-startup-id i3-msg exit, mode "default"
   bindsym l exec --no-startup-id $lock, mode "default"
-  bindsym s exec --no-startup-id $lock && loginctl suspend, mode "default"
-  bindsym r exec --no-startup-id loginctl reboot, mode "default"
-  bindsym Shift+s exec --no-startup-id loginctl poweroff -i, mode "default"
+  bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
+  bindsym r exec --no-startup-id systemctl reboot, mode "default"
+  bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"

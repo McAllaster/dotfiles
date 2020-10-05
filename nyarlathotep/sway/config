@@ -26,7 +26,8 @@ set $lock swaylock -i /usr/share/pixmaps/nordic_night.jpg
 ### Output
 
 output * bg /usr/share/pixmaps/nordic_mountains.jpg fill
-output DP-1 mode 2560x1440@164.998993Hz
+output DP-1 mode 3840x2160@119.999001Hz
+output DP-1 scale 1.5
 
 ### Input
 
@@ -38,6 +39,11 @@ input "1133:50184:Logitech_USB_Trackball" {
 }
 
 input "8916:4901:Mionix_Naos_7000" {
+  accel_profile flat
+  pointer_accel 0
+}
+
+input "1133:16518:Logitech_G703_LS" {
   accel_profile flat
   pointer_accel 0
 }
@@ -121,9 +127,9 @@ set $mode_system System: exit (e), lock (l), suspend (s), reboot (r), shutdown (
 mode "$mode_system" {
   bindsym e exec --no-startup-id swaymsg exit, mode "default"
   bindsym l exec --no-startup-id $lock, mode "default"
-  bindsym s exec --no-startup-id $lock && loginctl suspend, mode "default"
-  bindsym r exec --no-startup-id loginctl reboot, mode "default"
-  bindsym Shift+s exec --no-startup-id loginctl poweroff -i, mode "default"
+  bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
+  bindsym r exec --no-startup-id systemctl reboot, mode "default"
+  bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
