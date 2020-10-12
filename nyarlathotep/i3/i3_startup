@@ -2,4 +2,4 @@
 
 xrdb -merge ~/.Xresources
 ~/.fehbg
-nm-applet
+# nm-applet
