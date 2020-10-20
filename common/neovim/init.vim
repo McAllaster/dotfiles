@@ -23,7 +23,8 @@ set wrap
 set breakindent
 set formatoptions=l
 set lbr
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:❡,precedes:«,extends:»
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
+set list
 
 " Color & syntax
 filetype plugin on
@@ -42,7 +43,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 
 " Ale
 let g:ale_fixers = {
-      \  'javascript': ['eslint'],
+      \  'javascript': ['eslint', 'prettier'],
+      \  'svelte': ['prettier'],
       \  'go': ['gofmt']
       \}
 
