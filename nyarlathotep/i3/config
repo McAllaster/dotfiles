@@ -30,7 +30,10 @@ set $left   j
 set $down   k
 set $up     l
 set $right  semicolon
-set $lock   i3lock -c 2e3440
+
+set $lock       i3lock -c 2e3440
+set $screenshot maim -o ~/Pictures/screenshot-$(date -Iseconds).png
+set $selectshot maim -sob 4 ~/Pictures/screenshot-$(date -Iseconds).png
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -47,8 +50,9 @@ bindsym $mod+Shift+q kill
 # Launchers
 bindsym $mod+d exec rofi -show drun
 
-# Execute a "screenshot" script in your PATH
-bindsym $mod+x exec --no-startup-id screenshot
+# Take a screenshot
+bindsym $mod+x exec --no-startup-id $screenshot
+bindsym $mod+Shift+x exec --no-startup-id $selectshot
 
 # Kill and start the compositor
 bindsym $mod+p exec --no-startup-id "killall -w picom"
