@@ -1,0 +1,70 @@
+* {
+  nord-00: #2e3440;
+  nord-01: #3b4252;
+  nord-02: #434c5e;
+  nord-03: #4c566a;
+  nord-04: #d8dee9;
+  nord-05: #e5e9f0;
+  nord-06: #eceff4;
+  nord-07: #8fbcbb;
+  nord-08: #88c0d0;
+  nord-09: #81a1c1;
+  nord-10: #5e81ac;
+  nord-11: #bf616a;
+  nord-12: #d08770;
+  nord-13: #ebcb8b;
+  nord-14: #a3be8c;
+  nord-15: #b48ead;
+
+  background-color: @nord-00;
+  border-color: @nord-01;
+  text-color: @nord-04;
+  spacing: 0;
+
+  lines: 8;
+}
+
+mainbox {
+  children: [inputbar, listview];
+}
+
+inputbar {
+  border: 0 0 5px 0;
+  children: [prompt, entry];
+}
+
+prompt {
+  padding: 1em;
+  border: 0 1px 0 0;
+}
+
+entry {
+  padding: 1em;
+}
+
+listview {
+  background-color: @nord-01;
+  columns: 1;
+  cycle: false;
+  scrollbar: false;
+  spacing: 1px;
+}
+
+element {
+  padding: 1em;
+}
+
+element selected {
+  color: @nord-00;
+  background-color: @nord-08;
+}
+
+element-icon {
+  size: 2ch;
+  padding: 0 1em 0 0;
+}
+
+window {
+  border: 5px;
+  width: 33%;
+}
