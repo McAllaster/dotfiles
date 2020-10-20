@@ -22,6 +22,7 @@ set $mod Mod4
 set $term kitty
 set $menu wofi --show drun
 set $lock swaylock -i /usr/share/pixmaps/nordic_night.jpg
+set $screenshot grim -g "$(slurp)" -t png
 
 ### Output
 
@@ -61,6 +62,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 floating_modifier $mod normal
 bindsym $mod+Shift+c reload
+bindsym $mod+p exec $screenshot
 
 # Movement
 bindsym $mod+$left focus left
@@ -146,6 +148,16 @@ bar {
 
 ### Style
 
+exec_always {
+  gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+  gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
+  gsettings set org.gnome.desktop.interface icon-theme "Flatery-Dark"
+  gsettings set org.gnome.desktop.interface cursor-theme "vimix"
+  gsettings set org.gnome.desktop.interface cursor-size 32
+}
+
+seat seat0 xcursor_theme "vimix" 32
+
 font pango:monospace 10
 
 # Colors                Border  Backgr. Text    Indic.  Child
@@ -158,3 +170,7 @@ client.background       #2e3440
 
 default_border pixel 5
 gaps inner 10
+
+### Executions
+
+exec mako
