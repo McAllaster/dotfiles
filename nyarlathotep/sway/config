@@ -27,9 +27,9 @@ set $screenshot grim -g "$(slurp)" -t png
 ### Output
 
 output * bg /usr/share/pixmaps/nordic_mountains.jpg fill
-output DP-1 mode 3840x2160@119.999001Hz
+output DP-1 mode 3840x2160@144Hz
 output DP-1 adaptive_sync on
-output DP-1 scale 1.5
+output DP-1 scale 2
 
 ### Input
 
