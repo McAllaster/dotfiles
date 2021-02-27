@@ -26,12 +26,21 @@ set $screenshot grim -g "$(slurp)" -t png
 
 ### Output
 
-output * bg /usr/share/pixmaps/nordic_mountains.jpg fill
+# output * bg /usr/share/pixmaps/nordic_mountains.jpg fill
 output DP-1 mode 3840x2160@144Hz
 output DP-1 adaptive_sync on
-output DP-1 scale 2
+output DP-1 scale 1.5
 
 ### Input
+
+input "1452:613:Apple_Inc._Magic_Trackpad_2" {
+  accel_profile adaptive
+  click_method clickfinger
+  scroll_method two_finger
+  natural_scroll enabled
+  scroll_factor 0.2
+  tap disabled
+}
 
 input "1133:50184:Logitech_USB_Trackball" {
   middle_emulation enabled
@@ -152,11 +161,11 @@ exec_always {
   gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
   gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
   gsettings set org.gnome.desktop.interface icon-theme "Flatery-Dark"
-  gsettings set org.gnome.desktop.interface cursor-theme "vimix"
+  gsettings set org.gnome.desktop.interface cursor-theme "Vimix-Cursors"
   gsettings set org.gnome.desktop.interface cursor-size 32
 }
 
-seat seat0 xcursor_theme "vimix" 32
+seat seat0 xcursor_theme "Vimix-Cursors" 32
 
 font pango:monospace 10
 
