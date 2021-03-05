@@ -33,7 +33,7 @@ syntax on
 let g:nord_bold = 1
 let g:nord_italic = 1
 let g:nord_italic_comments = 1
-colorscheme nord
+colorscheme onehalflight
 au BufNewFile,BufRead /*.rasi setf css
 
 " CtrlP
@@ -44,6 +44,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " Ale
 let g:ale_fixers = {
       \  'javascript': ['eslint', 'prettier'],
+      \  'javascriptreact': ['eslint', 'prettier'],
       \  'svelte': ['prettier'],
       \  'markdown': ['prettier'],
       \  'go': ['gofmt']
@@ -54,7 +55,7 @@ let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '!'
 
 " Airline
-let g:airline_theme='nord'
+let g:airline_theme='onehalflight'
 
 " Keymapping
 noremap <C-s> :setlocal spell spelllang=en_us<CR>
