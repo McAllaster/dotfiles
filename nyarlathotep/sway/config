@@ -21,15 +21,23 @@ set $mod Mod4
 
 set $term kitty
 set $menu wofi --show drun
-set $lock swaylock -i /usr/share/pixmaps/nordic_night.jpg
+set $lock swaylock -i /usr/share/pixmaps/nordic-night.jpg
 set $screenshot grim -g "$(slurp)" -t png
 
 ### Output
+output * bg /usr/share/pixmaps/nordic-mountains.jpg fill
 
-# output * bg /usr/share/pixmaps/nordic_mountains.jpg fill
 output DP-1 mode 3840x2160@144Hz
 output DP-1 adaptive_sync on
 output DP-1 scale 1.5
+output DP-1 pos 0 1440
+
+output DP-2 mode 3840x2160@60hz
+output DP-2 adaptive_sync on
+output DP-2 scale 1.5
+output DP-2 pos 0 0
+
+focus output DP-1
 
 ### Input
 
@@ -160,12 +168,12 @@ bar {
 exec_always {
   gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
   gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
-  gsettings set org.gnome.desktop.interface icon-theme "Flatery-Dark"
-  gsettings set org.gnome.desktop.interface cursor-theme "Vimix-Cursors"
+  gsettings set org.gnome.desktop.interface icon-theme "Adwaita"
+  gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
   gsettings set org.gnome.desktop.interface cursor-size 32
 }
 
-seat seat0 xcursor_theme "Vimix-Cursors" 32
+seat seat0 xcursor_theme "Adwaita" 32
 
 font pango:monospace 10
 
