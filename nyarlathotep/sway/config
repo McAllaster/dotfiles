@@ -20,7 +20,7 @@ set $right semicolon
 set $mod Mod4
 
 set $term kitty
-set $menu wofi --show drun
+set $menu wofi --show drun -i
 set $lock swaylock
 set $screenshot grim -t png
 set $screenshot-select grim -g "$(slurp)" -t png
@@ -31,12 +31,6 @@ output * bg "#383a42" solid_color
 output DP-1 mode 3840x2160@144Hz
 output DP-1 adaptive_sync on
 output DP-1 scale 1.5
-output DP-1 pos 0 1440
-
-output DP-2 mode 3840x2160@60hz
-output DP-2 adaptive_sync on
-output DP-2 scale 1.5
-output DP-2 pos 0 0
 
 focus output DP-1
 
