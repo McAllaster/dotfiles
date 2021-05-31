@@ -27,12 +27,18 @@ set $screenshot-select grim -g "$(slurp)" -t png
 
 ### Output
 output * bg "#383a42" solid_color
+focus output DP-1
 
 output DP-1 mode 3840x2160@144Hz
 output DP-1 adaptive_sync on
 output DP-1 scale 1.5
+output DP-1 position 1440 560
 
-focus output DP-1
+output DP-2 mode 3840x2160@60Hz
+output DP-2 transform 90
+output DP-2 adaptive_sync on
+output DP-2 scale 1.5
+output DP-2 position 0 0
 
 ### Input
 
@@ -53,6 +59,11 @@ input "1133:50184:Logitech_USB_Trackball" {
 }
 
 input "8916:4901:Mionix_Naos_7000" {
+  accel_profile flat
+  pointer_accel 0
+}
+
+input "1241:41483:E-Signal_USB_Gaming_Mouse" {
   accel_profile flat
   pointer_accel 0
 }
@@ -134,14 +145,14 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 ### Modes
 
 mode "resize" {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym $left resize shrink width 100px
+    bindsym $down resize grow height 100px
+    bindsym $up resize shrink height 100px
+    bindsym $right resize grow width 100px
+    bindsym Left resize shrink width 100px
+    bindsym Down resize grow height 100px
+    bindsym Up resize shrink height 100px
+    bindsym Right resize grow width 100px
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

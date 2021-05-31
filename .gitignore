@@ -1,3 +1,4 @@
 common/neovim/.netrwhist
 **/default.target.wants
 **/sockets.target.wants
+**/*.service.wants
