@@ -1,4 +1,6 @@
-common/neovim/.netrwhist
 **/default.target.wants
 **/sockets.target.wants
 **/*.service.wants
+
+common/neovim/plugin/packer_compiled.lua
+common/neovim/.netrwhist
