@@ -67,6 +67,18 @@ require("packer").startup(function(use)
 
 	-- Language Server (types, linting, project context, etc.)
 	use({
+		"neovim/nvim-lspconfig",
+		config = function()
+			local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+
+			for type, icon in pairs(signs) do
+				local hl = "LspDiagnosticsSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			end
+		end,
+	})
+
+	use({
 		"kabouzeid/nvim-lspinstall",
 		requires = { "neovim/nvim-lspconfig" },
 		config = function()
@@ -134,20 +146,6 @@ require("packer").startup(function(use)
 			require("lspinstall").post_install_hook = lsp_init
 
 			lsp_init()
-		end,
-	})
-
-	use({
-		"glepnir/lspsaga.nvim",
-		requires = { "neovim/nvim-lspconfig" },
-		config = function()
-			require("lspsaga").init_lsp_saga({
-				border_style = "round",
-				error_sign = "",
-				hint_sign = "",
-				infor_sign = "",
-				warn_sign = "",
-			})
 		end,
 	})
 end)
