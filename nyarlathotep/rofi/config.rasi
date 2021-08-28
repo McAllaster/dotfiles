@@ -1,9 +1,0 @@
-configuration {
-  modi: "drun,run";
-  theme: "nord";
-  show-icons: true;
-  font: "monospace 16";
-  sidebar-mode: true;
-  display-run: "∵";
-  display-drun: "∷";
-}

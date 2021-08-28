@@ -13,10 +13,10 @@
 
 ### Variables
 
-set $left j
-set $down k
-set $up l
-set $right semicolon
+set $left h
+set $down j
+set $up k
+set $right l
 set $mod Mod4
 
 set $term kitty
@@ -32,13 +32,6 @@ focus output DP-1
 output DP-1 mode 3840x2160@144Hz
 output DP-1 adaptive_sync on
 output DP-1 scale 1.5
-output DP-1 position 1440 560
-
-output DP-2 mode 3840x2160@60Hz
-output DP-2 transform 90
-output DP-2 adaptive_sync on
-output DP-2 scale 1.5
-output DP-2 position 0 0
 
 ### Input
 
@@ -51,24 +44,7 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
   tap disabled
 }
 
-input "1133:50184:Logitech_USB_Trackball" {
-  middle_emulation enabled
-  scroll_method on_button_down
-  scroll_button button3
-  natural_scroll enabled
-}
-
-input "8916:4901:Mionix_Naos_7000" {
-  accel_profile flat
-  pointer_accel 0
-}
-
 input "1241:41483:E-Signal_USB_Gaming_Mouse" {
-  accel_profile flat
-  pointer_accel 0
-}
-
-input "1133:16518:Logitech_G703_LS" {
   accel_profile flat
   pointer_accel 0
 }
@@ -121,7 +97,7 @@ bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
 # Layout
-bindsym $mod+h splith
+bindsym $mod+b splith
 bindsym $mod+v splitv
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -136,11 +112,6 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-# Currently using physical controls, and should expect 100% volume at all times.
-  # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-  # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-  # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-  # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 ### Modes
 
@@ -183,49 +154,58 @@ bar {
 
 ### Style
 
+# GTK theming
 exec_always {
   # gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
   # gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
   # gsettings set org.gnome.desktop.interface icon-theme "Adwaita"
-  # gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
-  # gsettings set org.gnome.desktop.interface cursor-size 32
+  gsettings set org.gnome.desktop.interface cursor-theme "Vimix-white-cursors"
+  # gsettings set org.gnome.desktop.interface cursor-size 64
 }
 
 # Sway-specific cursor theming
-seat seat0 xcursor_theme "Adwaita" 32
+#seat seat0 xcursor_theme "Vimix-white-cursors" 64
+seat seat0 xcursor_theme "Vimix-white-cursors"
+seat seat0 hide_cursor 30000
 
-font pango:monospace 10
+# Fonts
+font pango:sans-serif 10
 
 # Colors
-
-set $c_black       "#383a42"
-set $c_red         "#e45649"
-set $c_green       "#50a14f"
-set $c_yellow      "#c18401"
-set $c_blue        "#0184bc"
-set $c_magenta     "#a626a4"
-set $c_cyan        "#0997b3"
-set $c_white       "#fafafa"
-set $c_foreground  "#383a42"
-set $c_background  "#fafafa"
-
-set $c_grey        "#e3e3e3"
+set $c_black      "#383a42"
+set $c_red        "#e45649"
+set $c_green      "#50a14f"
+set $c_yellow     "#c18401"
+set $c_blue       "#0184bc"
+set $c_magenta    "#a626a4"
+set $c_cyan       "#0997b3"
+set $c_white      "#fafafa"
+set $c_foreground "#383a42"
+set $c_background "#fafafa"
+set $c_dim        "#d4d4d4"
 
 client.background       "$c_background"
-# <Window State>		<Border>		<Bg>			<Text>			[Indicator]	[Child Border]
-client.focused			"$c_green"		"$c_green"		"$c_foreground"	"$c_yellow"	"$c_green"
-client.focused_inactive	"$c_background"	"$c_background"	"$c_foreground"	"$c_yellow"	"$c_background"
-client.unfocused		"$c_background"	"$c_background"	"$c_foreground"	"$c_yellow"	"$c_background"
-client.urgent			"$c_red"		"$c_red"		"$c_foreground"	"$c_yellow"	"$c_red"
-client.placeholder		"$c_magenta"	"$c_magenta"	"$c_foreground"	"$c_yellow"	"$c_magenta"
+# <Window State>        <Border>     <Bg>         <Text>          [Indicator] [Child Border]
+client.focused          "$c_green"   "$c_green"   "$c_foreground" "$c_yellow" "$c_green"
+client.focused_inactive "$c_dim"     "$c_dim"     "$c_foreground" "$c_yellow" "$c_dim"
+client.unfocused        "$c_dim"     "$c_dim"     "$c_foreground" "$c_yellow" "$c_dim"
+client.urgent           "$c_red"     "$c_red"     "$c_foreground" "$c_yellow" "$c_red"
+client.placeholder      "$c_magenta" "$c_magenta" "$c_foreground" "$c_yellow" "$c_magenta"
 
 default_border pixel 5
 gaps inner 10
 
 ### Executions
 
-# Update dbus, helps with things like xdg-desktop-portal et al.
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# Update D-Bus environment variables
+exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Notifications
 exec mako
+
+# Audio
+exec pipewire
+exec pipewire-pulse
+
+# Idling
+exec swayidle -w timeout 300 'swaylock -f' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f'
