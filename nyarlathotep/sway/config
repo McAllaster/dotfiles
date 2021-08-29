@@ -209,3 +209,6 @@ exec pipewire-pulse
 
 # Idling
 exec swayidle -w timeout 300 'swaylock -f' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f'
+
+# Automatically float the Firefox "sharing indicator"
+for_window [title="Firefox — Sharing Indicator"] floating enable, kill;
