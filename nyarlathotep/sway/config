@@ -214,3 +214,4 @@ exec swayidle -w timeout 300 'swaylock -f' timeout 600 'swaymsg "output * dpms o
 
 # Automatically remove the Firefox "sharing indicator"
 for_window [title="Firefox — Sharing Indicator"] floating enable, kill;
+for_window [title="Picture-in-Picture"] floating enable, resize set 800 450, move position 100ppt 100ppt, move left 800 px, move up 450 px, sticky enable, no_focus
