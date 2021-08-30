@@ -89,7 +89,22 @@ require("packer").startup(function(use)
 				lsp_install.setup()
 
 				for _, server in pairs(lsp_install.installed_servers()) do
-					if server == "efm" then
+					if server == "elmls" then
+						local custom_attach = function(client)
+							if client.config.flags then
+								client.config.flags.allow_incremental_sync = true
+							end
+						end
+
+						nvim_lsp[server].setup({
+						   on_attach = custom_attach;
+						})
+					elseif server == "efm" then
+						local elmformat = {
+							formatCommand = [[./node_modules/.bin/elm-format --stdin]],
+							formatStdin = true,
+						}
+
 						-- Ensure that eslint_d is in your $PATH!
 						-- Tip: If linting isn't working, try `eslint_d restart`
 						local eslint = {
@@ -116,6 +131,7 @@ require("packer").startup(function(use)
 
 						local languages = {
 							css = { prettier },
+							elm = { elmformat },
 							html = { prettier },
 							javascript = { prettier, eslint },
 							javascriptreact = { prettier, eslint },
