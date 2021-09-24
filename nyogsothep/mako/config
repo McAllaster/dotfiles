@@ -1,0 +1,7 @@
+default-timeout=5000
+border-size=5
+anchor=top-right
+font=sans-serif 10
+background-color=#3B4252FF
+text-color=#D8DEE9FF
+border-color=#B48EADFF

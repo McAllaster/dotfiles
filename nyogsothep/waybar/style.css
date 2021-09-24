@@ -1,0 +1,111 @@
+* {
+  border: none;
+  padding: 0;
+}
+
+window#waybar {
+  background-color: #fafafa;
+  color: #383a42;
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces {
+  background-color: transparent;
+  padding: 4px;
+}
+
+#workspaces button {
+	padding: 0 5px 0 5px;
+	border-bottom: 3px solid transparent;
+  background-color: transparent;
+  color: #383a42;
+  border-radius: 0;
+}
+
+#window {
+	padding: 15px;
+  background-color: transparent;
+	padding: 0 10px 0 10px;
+  margin: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+  box-shadow: inherit;
+  color: #383a42;
+  border-bottom: 3px solid #a626a4;
+}
+
+#workspaces button.focused {
+  color: #383a42;
+  border-bottom: 3px solid #50a14f;
+}
+
+#workspaces button.urgent {
+  background-color: #e45649;
+}
+
+#workspaces button {
+  padding: 0 10px;
+  margin-left: 4px;
+  transition-property: border-bottom, background;
+  transition-duration: .5s;
+}
+
+#mode {
+  color: #fafafa;
+  background-color: #c18401;
+}
+
+#battery,
+#pulseaudio,
+#clock,
+#cpu,
+#memory,
+#temperature,
+#network,
+#tray,
+#mode,
+#idle_inhibitor,
+#disk {
+  padding: 0 10px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+
+#battery,
+#pulseaudio,
+#clock,
+#cpu,
+#memory,
+#temperature,
+#network,
+#tray,
+#idle_inhibitor,
+#disk {
+  border-bottom: 3px solid #0184bc;
+}
+
+#idle_inhibitor.activated,
+#network.disconnected,
+#pulseaudio.muted,
+#temperature.critical {
+  color: #fafafa;
+  border-bottom: none;
+}
+
+#network.disconnected,
+#pulseaudio.muted,
+#temperature.critical {
+  background-color: #e45649;
+}
+
+#idle_inhibitor.activated {
+  background-color: #c18401;
+}
