@@ -2,6 +2,7 @@ function dmux --argument-names dir --description "Start a tmux development sessi
   switch "$dir"
     case ""
       set session (basename $PWD)
+	  set dir $PWD
     case \*
       set session (basename $dir)
   end
