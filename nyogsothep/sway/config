@@ -22,12 +22,13 @@ set $mod Mod4
 set $term alacritty
 set $menu wofi --show drun -i
 set $lock swaylock
-set $screenshot grim -t png
-set $screenshot-select grim -g "$(slurp)" -t png
+set $screenshot grim
+set $screenshot-select grim -g "$(slurp)"
 
 ### Output
 set $laptop "Unknown 0x095F 0x00000000"
 set $desktop "Goldstar Company Ltd 27GN950 008NTZN5H213"
+set $desktop2 "Unknown VG27A L3LMQS110119"
 
 output * bg "#383a42" solid_color
 
@@ -39,6 +40,9 @@ bindswitch --reload --locked lid:off output $laptop enable
 
 output $desktop mode 3840x2160@144Hz
 output $desktop scale 1.5
+
+output $desktop2 mode 2560x1440@144Hz
+output $desktop2 scale 1
 
 ### Input
 
@@ -61,8 +65,23 @@ input "1:1:AT_Translated_Set_2_keyboard" {
   xkb_options "ctrl:swapcaps,altwin:swap_lalt_lwin"
 }
 
+# Desktop2 Keyboard
+input "12851:25345:Ducky_Ducky_One2_Mini_RGB" {
+  # See /usr/share/X11/xkb/rules/xorg.lst for options
+
+  # Swap "left ctrl" and "caps lock"
+  # Swap "left alt" with "left win"
+  xkb_options "ctrl:swapcaps,altwin:swap_lalt_lwin"
+}
+
 # Desktop Mouse
 input "1241:41483:E-Signal_USB_Gaming_Mouse" {
+  accel_profile flat
+  pointer_accel 0
+}
+
+# Desktop2 Mouse
+input "5426:113:Razer_Razer_DeathAdder_Essential_White_Edition_Keyboard" {
   accel_profile flat
   pointer_accel 0
 }
@@ -135,6 +154,10 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# Brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 10%-
 
 ### Modes
 
