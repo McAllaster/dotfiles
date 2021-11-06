@@ -9,9 +9,14 @@ vim.g.maplocalleader = " "
 -- Shortcut for file explorer
 map("n", "<C-h>", [[:NvimTreeToggle<CR>]], opt)
 
+-- Spelling
+map("n", "<leader>ss", [[:TSDisableAll highlight<CR>:set spell<CR>]], opt)
+map("n", "<leader>sx", [[:TSEnableAll highlight<CR>:set nospell<CR>:e<CR>]], opt)
+
 -- LSP
-map("n", "<leader>lf", [[<cmd>lua vim.lsp.buf.formatting_seq_sync(nil, 2000)<CR>]], opt)
 map("n", "<leader>ll", [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]], opt)
+-- ESLint doesn't support proper LSP-based formatting, as far as I know, so it must be invoked manually.
+map("n", "<leader>lf", [[<cmd>lua vim.lsp.buf.formatting_seq_sync(nil, 2000)<CR>:EslintFixAll<CR>]], opt)
 map("n", "<leader>]", [[<cmd>lua vim.lsp.diagnostic.goto_next()<CR>]], opt)
 map("n", "<leader>[", [[<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>]], opt)
 map("n", "<leader>la", [[<cmd>lua vim.lsp.buf.code_action()<CR>]], opt)

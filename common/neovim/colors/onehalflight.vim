@@ -89,7 +89,7 @@ call s:h("PmenuSel", s:bg, s:blue, "")
 call s:h("PmenuSbar", "", s:cursor_line, "")
 call s:h("PmenuThumb", "", s:comment_fg, "")
 
-call s:h("SpellBad", s:red, "", "")
+call s:h("SpellBad", s:red, "", "underline")
 call s:h("SpellCap", s:yellow, "", "")
 call s:h("SpellLocal", s:yellow, "", "")
 call s:h("SpellRare", s:yellow, "", "")
