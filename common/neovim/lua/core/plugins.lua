@@ -120,7 +120,7 @@ require("packer").startup(function(use)
 						}
 
 						local prettier = {
-							formatCommand = [[./node_modules/.bin/prettier --stdin-filepath ${INPUT}]],
+							formatCommand = [[prettier --stdin-filepath ${INPUT}]],
 							formatStdin = true,
 						}
 

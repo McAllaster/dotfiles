@@ -33,7 +33,7 @@
   },
   "network": {
     "format-wifi": " {signalStrength}%",
-    "format-ethernet": " {ipaddr}",
+    "format-ethernet": " ",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "Disconnected",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"

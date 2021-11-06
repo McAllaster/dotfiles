@@ -28,7 +28,6 @@ set $screenshot-select grim -g "$(slurp)"
 ### Output
 set $laptop "Unknown 0x095F 0x00000000"
 set $desktop "Goldstar Company Ltd 27GN950 008NTZN5H213"
-set $desktop2 "Unknown VG27A L3LMQS110119"
 
 output * bg "#383a42" solid_color
 
@@ -38,11 +37,8 @@ output $laptop scale 1.5
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
-output $desktop mode 3840x2160@144Hz
+output $desktop mode 3840x2160@60Hz
 output $desktop scale 1.5
-
-output $desktop2 mode 2560x1440@144Hz
-output $desktop2 scale 1
 
 ### Input
 
@@ -154,6 +150,9 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 10
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 10
+bindsym XF86AudioMute exec --no-startup-id pamixer -t
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +10%
