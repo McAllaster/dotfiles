@@ -1,4 +1,4 @@
 vim.o.termguicolors = true
-vim.o.background = "light"
-vim.cmd("colorscheme onehalflight")
-vim.g.airline_theme = "onehalflight"
+vim.o.background = "dark"
+vim.cmd("colorscheme onedark")
+vim.g.onedark_terminal_italics = true
