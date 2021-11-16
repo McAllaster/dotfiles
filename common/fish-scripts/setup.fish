@@ -1,5 +1,6 @@
 #!/usr/bin/fish
 
+# Set prompt colors
 set -U fish_color_normal normal
 set -U fish_color_command magenta
 set -U fish_color_quote green
@@ -25,3 +26,18 @@ set -U fish_pager_color_prefix white --bold --underline
 set -U fish_pager_color_progress brwhite --background=cyan
 set -U fish_color_comment yellow
 set -U fish_color_match --background=brblue
+
+# Install Fisher
+curl -sL https://git.io/fisher | source
+fisher install jorgebucaran/fisher
+
+# A fast and minimal prompt
+fisher install jorgebucaran/hydro
+set -U hydro_color_git magenta
+set -U hydro_color_prompt cyan
+set -U hydro_color_duration yellow
+
+# Node Version Manager
+fisher install jorgebucaran/nvm.fish
+nvm install lts
+set -U nvm_default_version lts
