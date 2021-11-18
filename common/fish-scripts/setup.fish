@@ -28,16 +28,38 @@ set -U fish_color_comment yellow
 set -U fish_color_match --background=brblue
 
 # Install Fisher
-curl -sL https://git.io/fisher | source
-fisher install jorgebucaran/fisher
+if not type -q fisher
+	curl -sL https://git.io/fisher | source
+	fisher install jorgebucaran/fisher
+end
 
-# A fast and minimal prompt
-fisher install jorgebucaran/hydro
-set -U hydro_color_git magenta
-set -U hydro_color_prompt cyan
+# Install Fisher plugins
+set hydro_installed false
+set nvm_installed false
+
+for plugin in (fisher list)
+	if [ "$plugin" = "jorgebucaran/hydro" ]
+		set hydro_installed true
+	end
+	if [ "$plugin" = "jorgebucaran/nvm.fish" ]
+		set nvm_installed true
+	end
+end
+
+if not $hydro_installed
+	fisher install jorgebucaran/hydro
+end
+
+set -U hydro_color_pwd cyan
+set -U hydro_color_git white
+set -U hydro_color_prompt green
 set -U hydro_color_duration yellow
 
 # Node Version Manager
-fisher install jorgebucaran/nvm.fish
+
+if not $nvm_installed
+	fisher install jorgebucaran/nvm.fish
+end
+
 nvm install lts
 set -U nvm_default_version lts
