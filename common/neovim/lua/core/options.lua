@@ -3,12 +3,6 @@ vim.o.ignorecase = true -- ignore casing for patterns
 vim.o.smartcase = true -- re-enable case for patterns when caps are present
 vim.o.hlsearch = true -- continually highlight all search results
 
--- Indentation (normally fulfilled by editorconfig)
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
-vim.o.smartindent = false -- automatic newline indentation
-
 -- UI
 vim.o.ruler = true -- show cursor positon
 vim.o.number = true -- precede lines with their number

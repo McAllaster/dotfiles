@@ -33,16 +33,17 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	-- Editor defaults (usually by project)
-	use("editorconfig/editorconfig-vim")
+	-- Surrounding character interaction
+	use("tpope/vim-surround")
 
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("nvim-tree").setup({})
-		end,
-	})
+	-- Indentation automation
+	use("tpope/vim-sleuth")
+
+	-- Netrw (:Explore) enhancement
+	use("tpope/vim-vinegar")
+
+	-- Comment mappings
+	use("tpope/vim-commentary")
 
 	-- Fuzzy finder
 	use({
@@ -65,10 +66,12 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	-- Git integration
+	use("tpope/vim-fugitive")
+
 	-- Tree sitting (syntax, indentation, etc.)
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		branch = "0.5-compat", -- Neovim 'nightly' is targeted by the master branch
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				highlight = {
@@ -99,8 +102,23 @@ require("packer").startup(function(use)
 		requires = { "neovim/nvim-lspconfig" },
 		config = function()
 			local lsp_install = require("nvim-lsp-installer")
-			lsp_install.on_server_ready(function(server)
-				server:setup({})
+
+			lsp_install.on_server_ready(function (server)
+				local opts = {}
+
+				if server.name == "eslint" then
+					opts.on_attach = function (client, bufnr)
+						-- neovim's LSP client does not currently support dynamic capabilities
+						-- registration, so we need to set the resolved capabilities of the
+						-- eslint server ourselves!
+						client.resolved_capabilities.document_formatting = true
+					end
+					opts.settings = {
+						format = { enable = true }, -- this will enable formatting
+					}
+				end
+
+				server:setup(opts)
 			end)
 		end,
 	})
