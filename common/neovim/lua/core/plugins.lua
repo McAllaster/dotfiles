@@ -36,8 +36,9 @@ require("packer").startup(function(use)
 	-- Surrounding character interaction
 	use("tpope/vim-surround")
 
-	-- Indentation automation
+	-- Indentation/file property automation
 	use("tpope/vim-sleuth")
+	use("editorconfig/editorconfig-vim")
 
 	-- Netrw (:Explore) enhancement
 	use("tpope/vim-vinegar")
