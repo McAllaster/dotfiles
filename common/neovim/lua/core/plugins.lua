@@ -20,19 +20,6 @@ require("packer").startup(function(use)
 	-- Package management
 	use("wbthomason/packer.nvim")
 
-	-- Statusline
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = {'kyazdani42/nvim-web-devicons', opt = true},
-		config = function()
-			require('lualine').setup({
-				options = {
-					theme = 'gruvbox-material'
-				}
-			})
-		end,
-	})
-
 	-- Surrounding character interaction
 	use("tpope/vim-surround")
 
@@ -54,7 +41,13 @@ require("packer").startup(function(use)
 			{ "nvim-lua/plenary.nvim" },
 		},
 		config = function()
-			require("telescope").setup({})
+			require("telescope").setup({
+				pickers = {
+					find_files = {
+						hidden = true
+					}
+				}
+			})
 		end,
 	})
 
@@ -121,6 +114,20 @@ require("packer").startup(function(use)
 
 				server:setup(opts)
 			end)
+		end,
+	})
+
+	use("vim-test/vim-test")
+
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("null-ls").setup({
+				sources = {
+					require("null-ls").builtins.diagnostics.cspell, -- spellcheck
+				}
+			})
 		end,
 	})
 end)
