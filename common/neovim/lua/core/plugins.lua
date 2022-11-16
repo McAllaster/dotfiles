@@ -27,8 +27,16 @@ require("packer").startup(function(use)
 	use("tpope/vim-sleuth")
 	use("editorconfig/editorconfig-vim")
 
-	-- Netrw (:Explore) enhancement
-	use("tpope/vim-vinegar")
+	-- Tree
+	use {
+		'nvim-tree/nvim-tree.lua',
+		requires = {
+			'nvim-tree/nvim-web-devicons', -- optional, for file icons
+		},
+		config = function()
+			require("nvim-tree").setup()
+		end,
+	}
 
 	-- Comment mappings
 	use("tpope/vim-commentary")
@@ -91,33 +99,33 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"williamboman/nvim-lsp-installer",
-		requires = { "neovim/nvim-lspconfig" },
+	use {
+		"williamboman/mason-lspconfig.nvim",
+		requires = {
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+		},
 		config = function()
-			local lsp_install = require("nvim-lsp-installer")
-
-			lsp_install.on_server_ready(function (server)
-				local opts = {}
-
-				if server.name == "eslint" then
-					opts.on_attach = function (client, bufnr)
-						-- neovim's LSP client does not currently support dynamic capabilities
-						-- registration, so we need to set the resolved capabilities of the
-						-- eslint server ourselves!
-						client.resolved_capabilities.document_formatting = true
-					end
-					opts.settings = {
-						format = { enable = true }, -- this will enable formatting
-					}
+			require("mason").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"eslint",
+					"graphql",
+					"html",
+					"jsonls",
+					"sumneko_lua",
+					"tsserver",
+					"yamlls",
+				},
+				automatic_installation = true,
+			})
+			require("mason-lspconfig").setup_handlers({
+				function(server)
+					require("lspconfig")[server].setup({})
 				end
-
-				server:setup(opts)
-			end)
+			})
 		end,
-	})
-
-	use("vim-test/vim-test")
+	}
 
 	use({
 		"jose-elias-alvarez/null-ls.nvim",

@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Shortcut for file explorer
-map("n", "<C-h>", [[:Explore<CR>]], opt)
+map("n", "<C-h>", [[:NvimTreeToggle<CR>]], opt)
 
 -- Spelling
 map("n", "<leader>ss", [[:set spell<CR>]], opt)
@@ -20,7 +20,7 @@ map("n", "<leader>ts", [[:TestSuite<CR>]], opt)
 
 -- LSP
 map("n", "<leader>ll", [[<cmd>lua vim.diagnostic.open_float()<CR>]], opt)
-map("n", "<leader>lf", [[<cmd>lua vim.lsp.buf.formatting_seq_sync(nil, 2000)<CR>]], opt)
+map("n", "<leader>lf", [[<cmd>lua vim.lsp.buf.format()<CR> :EslintFixAll<CR>]], opt)
 map("n", "<leader>]", [[<cmd>lua vim.diagnostic.goto_next()<CR>]], opt)
 map("n", "<leader>[", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], opt)
 map("n", "<leader>la", [[<cmd>lua vim.lsp.buf.code_action()<CR>]], opt)
