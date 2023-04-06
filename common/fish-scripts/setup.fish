@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 # Set prompt colors
 set -U fish_color_normal normal
