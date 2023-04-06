@@ -76,6 +76,19 @@ require("packer").startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
 			require("nvim-treesitter.configs").setup({
+				ensure_installed = {
+					"c",
+					"lua",
+					"vim",
+					"vimdoc",
+					"query",
+					"javascript",
+					"typescript",
+					"html",
+					"css",
+					"markdown",
+					"fish"
+				},
 				highlight = {
 					enable = true,
 				},
@@ -87,38 +100,46 @@ require("packer").startup(function(use)
 	})
 
 	-- Language Server (types, linting, project context, etc.)
-	use({
-		"neovim/nvim-lspconfig",
+	use {
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		requires = {
+			"williamboman/mason-lspconfig.nvim",
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+		},
 		config = function()
+			-- LSPConfig
 			local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
 			for type, icon in pairs(signs) do
 				local hl = "LspDiagnosticsSign" .. type
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 			end
-		end,
-	})
 
-	use {
-		"williamboman/mason-lspconfig.nvim",
-		requires = {
-			"neovim/nvim-lspconfig",
-			"williamboman/mason.nvim",
-		},
-		config = function()
+			-- Mason
 			require("mason").setup()
-			require("mason-lspconfig").setup({
+
+			-- Mason Tool Installer
+			require("mason-tool-installer").setup({
 				ensure_installed = {
-					"eslint",
-					"graphql",
-					"html",
-					"jsonls",
-					"sumneko_lua",
-					"tsserver",
-					"yamlls",
+					"eslint-lsp",
+					"cspell",
+					"graphql-language-service-cli",
+					"html-lsp",
+					"json-lsp",
+					"lua-language-server",
+					"typescript-language-server",
+					"prettier",
+					"yaml-language-server",
 				},
-				automatic_installation = true,
+				auto_update = true,
+				run_on_start = true,
+				start_delay = 3000,
+				debounce_hours = 5,
 			})
+
+			-- Mason LSPConfig
+			require("mason-lspconfig").setup()
 			require("mason-lspconfig").setup_handlers({
 				function(server)
 					require("lspconfig")[server].setup({})
@@ -126,16 +147,4 @@ require("packer").startup(function(use)
 			})
 		end,
 	}
-
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("null-ls").setup({
-				sources = {
-					require("null-ls").builtins.diagnostics.cspell, -- spellcheck
-				}
-			})
-		end,
-	})
 end)
