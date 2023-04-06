@@ -15,7 +15,54 @@ end
 -- Plugin definitions
 require("packer").startup(function(use)
 	-- Colorscheme
-	use("sainnhe/gruvbox-material")
+	use({
+		"f-person/auto-dark-mode.nvim",
+		requires = {
+			"catppuccin/nvim",
+		},
+		config = function()
+			require("catppuccin").setup({
+				flavour = "latte",
+				background = {
+					light = "latte",
+					dark = "mocha",
+				},
+				transparent_background = true,
+				show_end_of_buffer = true,
+				dim_inactive = {
+					enabled = true,
+					shade = "dark",
+					percentage = 0.25,
+				},
+				styles = {
+					comments = { "italic" },
+					conditionals = { "italic" },
+				},
+				integrations = {
+					cmp = true,
+					gitsigns = true,
+					nvimtree = true,
+					telescope = true,
+					treesitter = true,
+				},
+			})
+
+			local auto_dark_mode = require("auto-dark-mode")
+
+			auto_dark_mode.setup({
+				update_interval = 1000,
+				set_dark_mode = function()
+					vim.api.nvim_set_option("background", "dark")
+				end,
+				set_light_mode = function()
+					vim.api.nvim_set_option("background", "light")
+				end,
+			})
+
+			vim.cmd("colorscheme catppuccin")
+			auto_dark_mode.init()
+		end,
+	})
 
 	-- Package management
 	use("wbthomason/packer.nvim")
