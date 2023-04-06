@@ -75,15 +75,15 @@ require("packer").startup(function(use)
 	use("editorconfig/editorconfig-vim")
 
 	-- Tree
-	use {
-		'nvim-tree/nvim-tree.lua',
+	use({
+		"nvim-tree/nvim-tree.lua",
 		requires = {
-			'nvim-tree/nvim-web-devicons', -- optional, for file icons
+			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
 			require("nvim-tree").setup()
 		end,
-	}
+	})
 
 	-- Comment mappings
 	use("tpope/vim-commentary")
