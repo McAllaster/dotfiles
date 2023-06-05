@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Shortcut for file explorer
-map("n", "<C-h>", [[:NvimTreeToggle<CR>]], opt)
+map("n", "<C-h>", [[:NvimTreeFindFileToggle<CR>]], opt)
 
 -- Spelling
 map("n", "<leader>ss", [[:set spell<CR>]], opt)
