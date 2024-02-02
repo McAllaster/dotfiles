@@ -6,7 +6,7 @@ Different projects might require different Git configurations, whether that be d
 Using a singular "global" configuration might not meet my needs, and managing project-specific configurations is tedious.
 Thankfully, Git has a solution: `includeIf`:
 
-```
+```git_config
 [includeIf "gitdir:"<PROJECT-PATH>"]
 	path = <PATH-TO-SUB-CONFIG>
 ```
@@ -18,7 +18,7 @@ Simply specify a different file formatted as a `.gitconfig` containing your new 
 
 Utilize the following category/rule combinations in your `.gitconfig` to automatically sign a commit:
 
-```
+```git_config
 [commit]
 gpgsign = true
 

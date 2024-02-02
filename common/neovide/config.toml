@@ -1,0 +1,5 @@
+[font]
+normal = ["VictorMono Nerd Font"]
+size = 12
+edging = "subpixelantialias"
+hinting = "full"

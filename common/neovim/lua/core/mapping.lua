@@ -39,3 +39,10 @@ map("n", "<leader>fg", [[<cmd>lua require('telescope.builtin').grep_string()<CR>
 map("n", "<leader>fp", [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opt)
 map("n", "<leader>fc", [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opt)
 map("n", "<leader>?", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opt)
+
+-- Workspaces
+map("n", "<leader>ww", [[:Telescope workspaces<CR>]], opt)
+
+-- Floaterm
+map("n", "<F1>", [[:FloatermToggle<CR>]], opt)
+map("i", "<F1>", [[:FloatermToggle<CR>]], opt)
