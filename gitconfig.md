@@ -7,12 +7,22 @@ Using a singular "global" configuration might not meet my needs, and managing pr
 Thankfully, Git has a solution: `includeIf`:
 
 ```git_config
-[includeIf "gitdir:"<PROJECT-PATH>"]
+[includeIf "gitdir:<PROJECT-PATH>/"]
 	path = <PATH-TO-SUB-CONFIG>
 ```
 
 This gives you conditional rule inclusion for a provided path, and all child paths below it.
 Simply specify a different file formatted as a `.gitconfig` containing your new rules for that path.
+
+### Example
+```git_config
+# Note the trailing slash
+[includeIf "gitdir:~/Git/Work/"]
+	path = "~/Git/Work/.gitconfig"
+
+[includeIf "gitdir:~/Git/Personal/"]
+	path = "~/Git/Personal/.gitconfig"
+```
 
 ## Signing
 
