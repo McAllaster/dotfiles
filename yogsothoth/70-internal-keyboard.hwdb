@@ -1,0 +1,5 @@
+evdev:input:b0011v0001p0001* # framework laptop keyboard
+ KEYBOARD_KEY_1d=key_capslock
+ KEYBOARD_KEY_3a=key_leftctrl
+ KEYBOARD_KEY_38=key_leftmeta
+ KEYBOARD_KEY_db=key_leftalt
