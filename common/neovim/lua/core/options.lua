@@ -14,6 +14,7 @@ vim.o.breakindent = true -- indent wrapped lines
 vim.o.scrolloff = 2 -- keep at least this many lines around cursor
 vim.o.list = true -- display unprintable characters
 vim.o.listchars = [[tab:→ ,space:·,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»]]
+vim.o.tabstop = 4 -- render tabs as four spaces
 vim.o.laststatus = 3 -- global statusline
 
 -- General enhancements

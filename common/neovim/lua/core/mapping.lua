@@ -20,7 +20,8 @@ map("n", "<leader>ts", [[:TestSuite<CR>]], opt)
 
 -- LSP
 map("n", "<leader>ll", [[<cmd>lua vim.diagnostic.open_float()<CR>]], opt)
-map("n", "<leader>lf", [[<cmd>lua vim.lsp.buf.format()<CR> :EslintFixAll<CR>]], opt)
+-- map("n", "<leader>lf", [[<cmd>lua vim.lsp.buf.format()<CR> :EslintFixAll<CR>]], opt)
+map("n", "<leader>lf", [[<cmd>lua vim.lsp.buf.format()<CR> :Format<CR>]], opt)
 map("n", "<leader>]", [[<cmd>lua vim.diagnostic.goto_next()<CR>]], opt)
 map("n", "<leader>[", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], opt)
 map("n", "<leader>la", [[<cmd>lua vim.lsp.buf.code_action()<CR>]], opt)

@@ -121,8 +121,6 @@ require("packer").startup(function(use)
 	-- Comment mappings
 	use("tpope/vim-commentary")
 
-	use("voldikss/vim-floaterm")
-
 	-- Fuzzy finder
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -201,11 +199,6 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"nvim-treesitter/nvim-treesitter-context",
-		requires = { "nvim-treesitter/nvim-treesitter" },
-	})
-
 	-- Language Server (types, linting, project context, etc.)
 	use {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -213,6 +206,7 @@ require("packer").startup(function(use)
 			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
+			"mhartington/formatter.nvim",
 		},
 		config = function()
 			-- LSPConfig
@@ -239,10 +233,55 @@ require("packer").startup(function(use)
 					"prettier",
 					"yaml-language-server",
 				},
-				auto_update = true,
+				auto_update = false,
 				run_on_start = true,
 				start_delay = 3000,
 				debounce_hours = 5,
+			})
+
+			-- Formatter
+			local util = require "formatter.util"
+			require("formatter").setup({
+				logging = true,
+				log_level = vim.log.levels.WARN,
+				filetype = {
+					css = {
+						require("formatter.filetypes.css").prettier
+					},
+					graphql = {
+						require("formatter.filetypes.graphql").prettier
+					},
+					html = {
+						require("formatter.filetypes.html").prettier
+					},
+					javascript = {
+						require("formatter.filetypes.javascript").prettier
+					},
+					javascriptreact = {
+						require("formatter.filetypes.javascriptreact").prettier
+					},
+					json = {
+						require("formatter.filetypes.json").prettier
+					},
+					markdown = {
+						require("formatter.filetypes.markdown").prettier
+					},
+					svelte = {
+						require("formatter.filetypes.svelte").prettier
+					},
+					typescript = {
+						require("formatter.filetypes.typescript").prettier
+					},
+					typescriptreact = {
+						require("formatter.filetypes.typescriptreact").prettier
+					},
+					vue = {
+						require("formatter.filetypes.vue").prettier
+					},
+					yaml = {
+						require("formatter.filetypes.yaml").prettier
+					},
+				}
 			})
 
 			-- Mason LSPConfig
