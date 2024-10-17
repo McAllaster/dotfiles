@@ -35,14 +35,10 @@ end
 
 # Install Fisher plugins
 set hydro_installed false
-set nvm_installed false
 
 for plugin in (fisher list)
 	if [ "$plugin" = "jorgebucaran/hydro" ]
 		set hydro_installed true
-	end
-	if [ "$plugin" = "jorgebucaran/nvm.fish" ]
-		set nvm_installed true
 	end
 end
 
@@ -54,12 +50,3 @@ set -U hydro_color_pwd cyan
 set -U hydro_color_git white
 set -U hydro_color_prompt green
 set -U hydro_color_duration yellow
-
-# Node Version Manager
-
-if not $nvm_installed
-	fisher install jorgebucaran/nvm.fish
-end
-
-nvm install lts
-set -U nvm_default_version lts
