@@ -106,7 +106,6 @@ require("packer").startup(function(use)
 
 	-- Indentation/file property automation
 	use("tpope/vim-sleuth")
-	use("editorconfig/editorconfig-vim")
 
 	-- Tree
 	use({

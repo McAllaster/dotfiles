@@ -21,3 +21,5 @@ vim.o.laststatus = 3 -- global statusline
 vim.o.updatetime = 250 -- faster update interval
 vim.o.autoread = true -- auto update outside changes
 vim.o.hidden = true -- don't save when switching buffers
+vim.o.smartindent = true -- automatically indent based on previous line
+vim.g.editorconfig = true -- use editorconfig https://editorconfig.org/
