@@ -56,5 +56,5 @@ gsettings set org.gnome.desktop.interface enable-hot-corners false
     ```
     gsettings set org.gnome.desktop.interface icon-theme "'Papirus-Dark'";
     ```
-
-
+- [AppIndicator Support](https://extensions.gnome.org/extension/615/appindicator-support/)
+  - Install via `sudo dnf reinstall gnome-shell-extension-appindicator` for Fedora's official version
