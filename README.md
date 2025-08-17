@@ -14,6 +14,10 @@ For Kitty light/dark mode, install https://github.com/gaheldev/kitty-gnome-light
 - Some apps (possibly incorrectly) use `XCURSOR_PATH`, set the environment variable: `XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons`
 - Using KDE, applications that need to stop the screensaver from appearing may need the `org.freedesktop.ScreenSave` session bus added to talk over
 
+### Fedora & Smartcards
+
+By default, Fedora seems to ship with both `pcsc-lite` and `opensc`. Both of these being present seems to cause conflicts with GPG being able to detect smartcards (i.e. `gpg --card-status`). Uninstalling `opensc` and restarting `pcscd` (`sudo systemctl restart pcscd`) should fix this.
+
 ### Keyboard Remapping
 
 The most reliable way for a hardware keyboard to be remapped without affecting _other_ keyboards is to use `udev` rule updates.
