@@ -27,6 +27,9 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
 # Disallow middle-click pasting (should also disable middlemouse.paste in firefox's about:config)
 gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
 
+# Use workspaces on all monitors, otherwise disconnecting/reconnecting monitors moves windows to a single space
+gsettings set org.gnome.mutter workspaces-only-on-primary false
+
 # Gnome's GUI dosn't allow users to bind their workspace shortcuts past 4 for some reason.
 gsettings set org.gnome.mutter dynamic-workspaces false
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
