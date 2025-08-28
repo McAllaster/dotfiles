@@ -204,11 +204,10 @@ require("packer").startup(function(use)
 
 	-- Language Server (types, linting, project context, etc.)
 	use {
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"williamboman/mason.nvim",
 		requires = {
 			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
-			"williamboman/mason.nvim",
 			"mhartington/formatter.nvim",
 		},
 		config = function()
@@ -223,27 +222,7 @@ require("packer").startup(function(use)
 			-- Mason
 			require("mason").setup()
 
-			-- Mason Tool Installer
-			require("mason-tool-installer").setup({
-				ensure_installed = {
-					"eslint-lsp",
-					"cspell",
-					"graphql-language-service-cli",
-					"html-lsp",
-					"json-lsp",
-					"lua-language-server",
-					"typescript-language-server",
-					"prettier",
-					"yaml-language-server",
-				},
-				auto_update = false,
-				run_on_start = true,
-				start_delay = 3000,
-				debounce_hours = 5,
-			})
-
 			-- Formatter
-			local util = require "formatter.util"
 			require("formatter").setup({
 				logging = true,
 				log_level = vim.log.levels.WARN,
@@ -288,7 +267,19 @@ require("packer").startup(function(use)
 			})
 
 			-- Mason LSPConfig
-			require("mason-lspconfig").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"eslint-lsp",
+					"cspell",
+					"graphql-language-service-cli",
+					"html-lsp",
+					"json-lsp",
+					"lua-language-server",
+					"typescript-language-server",
+					"prettier",
+					"yaml-language-server",
+				},
+			})
 		end,
 	}
 end)
