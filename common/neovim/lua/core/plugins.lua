@@ -37,6 +37,8 @@ require("packer").startup(function(use)
 				styles = {
 					comments = { "italic" },
 					conditionals = { "italic" },
+					variables = { "bold" },
+					types = { "italic" },
 				},
 				integrations = {
 					cmp = true,
@@ -191,6 +193,7 @@ require("packer").startup(function(use)
 				},
 				highlight = {
 					enable = true,
+					additional_vim_regex_highlighting = false,
 				},
 				indent = {
 					enable = true,
