@@ -78,3 +78,13 @@ MimeType=image/png;image/bmp;image/x-bmp;image/x-MS-bmp;image/gif;image/x-icon;i
 ```
 
 Note that `TryExec` has been changed to use `miniaturo`, and `MimeType` has been expanded to include many other types of `RAW` files.
+
+## Bugs & Gotchas
+
+### Chrome Keyboard Shortcut Popups
+
+Chrome has an odd [bug](https://issues.chromium.org/issues/404298968) at the moment in Gnome that causes a "Keyboard Shortcuts" popup to open whenever it is opened.
+
+To fix this, you can add `--disable-features=GlobalShortcutsPortal` to the end of the `Exec` commands in the desktop application shortcut file.
+
+For a flatpak user installation, the `.desktop` file can be found at `~/.local/share/flatpak/app/com.google.Chrome/current/active/export/share/applications/com.google.Chrome.desktop`
