@@ -32,10 +32,10 @@ require('lazydev').setup({
 		{ path = '${3rd}/luv/library', words = { 'vim%.uv' } },
 	},
 })
-vim.lsp.enable('lua_ls')  -- Requires `lua-language-server` in $PATH
-vim.lsp.enable('jsonls')  -- Requires `npm i -g vscode-langservers-extracted`
+vim.lsp.enable('lua_ls') -- Requires `lua-language-server` in $PATH
+vim.lsp.enable('jsonls') -- Requires `npm i -g vscode-langservers-extracted`
 vim.lsp.enable('tofu_ls') -- Requires `tofu` in $PATH
-vim.lsp.enable('svelte')  -- Requires `npm i -g svelte-language-server`
+vim.lsp.enable('svelte') -- Requires `npm i -g svelte-language-server`
 
 -- Linters
 require('lint').linters_by_ft = {
