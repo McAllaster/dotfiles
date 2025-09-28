@@ -19,22 +19,27 @@ vim.pack.add({
 		src = 'https://github.com/mfussenegger/nvim-lint',
 		version = '0864f81c681e15d9bdc1156fe3a17bd07db5a3ed',
 	},
-})
-
--- TypeScript
-require('typescript-tools').setup({})
-
--- Lua
-require('lazydev').setup({
-	library = {
-		{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+	{
+		name = 'conform', -- Powerful formatter
+		src = 'https://github.com/stevearc/conform.nvim',
+		version = '3bad87250ed85246fe8c5bc10005ab5a6289ae4c',
 	},
 })
-vim.lsp.enable('lua_ls') -- requires `lua-language-server` in $PATH
+
+require('typescript-tools').setup({}) -- Requires `npm i -g typescript`
+require('lazydev').setup({
+	library = {
+		{ path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+	},
+})
+vim.lsp.enable('lua_ls')  -- Requires `lua-language-server` in $PATH
+vim.lsp.enable('jsonls')  -- Requires `npm i -g vscode-langservers-extracted`
+vim.lsp.enable('tofu_ls') -- Requires `tofu` in $PATH
+vim.lsp.enable('svelte')  -- Requires `npm i -g svelte-language-server`
 
 -- Linters
 require('lint').linters_by_ft = {
-	typescript = { 'eslint_d' }, -- Run `npm i -g eslint_d` to install globally
+	typescript = { 'eslint_d' }, -- Requires`npm i -g eslint_d`
 }
 
 local lint_modifiable = function()
@@ -51,9 +56,23 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
 	callback = lint_modifiable,
 })
 
+require('conform').setup({
+	lsp_format = 'fallback',
+	lua = { 'stylua' },
+	formatters_by_ft = {
+		javascript = { 'prettierd' },
+		typescript = { 'prettierd' },
+	},
+	format_on_save = {
+		-- These options will be passed to conform.format()
+		timeout_ms = 500,
+		lsp_format = 'fallback',
+	},
+})
+
 vim.keymap.set('n', '<leader>ll', lint_modifiable)
 vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>lf', require('conform').format)
 vim.keymap.set('n', '<leader>]', vim.diagnostic.goto_next) -- TODO: Replace with non-deprecated alternative
 vim.keymap.set('n', '<leader>[', vim.diagnostic.goto_prev) -- TODO: Replace with non-deprecated alternative
 vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action)
@@ -62,4 +81,3 @@ vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover)
 vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename)
 vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition)
 vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation)
-
