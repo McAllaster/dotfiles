@@ -1,0 +1,6 @@
+[tools]
+usage = "latest"
+node = "latest"
+lua-language-server = "latest"
+stylua = "latest"
+tflint = "latest"
