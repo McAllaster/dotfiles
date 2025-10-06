@@ -32,10 +32,10 @@ require('lazydev').setup({
 		{ path = '${3rd}/luv/library', words = { 'vim%.uv' } },
 	},
 })
-vim.lsp.enable('lua_ls') -- Requires `lua-language-server` in $PATH
-vim.lsp.enable('jsonls') -- Requires `npm i -g vscode-langservers-extracted`
+vim.lsp.enable('lua_ls')  -- Requires `lua-language-server` in $PATH
+vim.lsp.enable('jsonls')  -- Requires `npm i -g vscode-langservers-extracted`
 vim.lsp.enable('tofu_ls') -- Requires `tofu` in $PATH
-vim.lsp.enable('svelte') -- Requires `npm i -g svelte-language-server`
+vim.lsp.enable('svelte')  -- Requires `npm i -g svelte-language-server`
 
 -- Linters
 require('lint').linters_by_ft = {
@@ -56,12 +56,13 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
 	callback = lint_modifiable,
 })
 
-require('conform').setup({
+
+local conform = require('conform')
+conform.setup({
 	lsp_format = 'fallback',
-	lua = { 'stylua' },
 	formatters_by_ft = {
+		lua = { 'stylua' },
 		javascript = { 'prettierd' },
-		typescript = { 'prettierd' },
 	},
 	format_on_save = {
 		-- These options will be passed to conform.format()
@@ -69,6 +70,9 @@ require('conform').setup({
 		lsp_format = 'fallback',
 	},
 })
+conform.formatters_by_ft.javascriptreact = conform.formatters_by_ft.javascript;
+conform.formatters_by_ft.typescript = conform.formatters_by_ft.javascript;
+conform.formatters_by_ft.typescriptreact = conform.formatters_by_ft.javascript;
 
 vim.keymap.set('n', '<leader>ll', lint_modifiable)
 vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float)
