@@ -6,8 +6,8 @@ vim.pack.add({
 	},
 	{
 		name = 'auto-dark-mode',
-		src = 'https://github.com/f-person/auto-dark-mode.nvim',
-		version = 'e300259ec777a40b4b9e3c8e6ade203e78d15881',
+		src = 'https://github.com/FineFindus/auto-dark-mode.nvim',
+		version = '0e9a68b91c413b8f96201177da2601fd7e005b7c',
 	},
 })
 
