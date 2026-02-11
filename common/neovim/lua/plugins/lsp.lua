@@ -12,7 +12,7 @@ vim.pack.add({
 	{
 		name = 'lazydev', -- Lua setup by someone smarter than me
 		src = 'https://github.com/folke/lazydev.nvim',
-		version = '258d2a5ef4a3e3d6d9ba9da72c9725c53e9afcbd',
+		version = '5231c62aa83c2f8dc8e7ba957aa77098cda1257d',
 	},
 	{
 		name = 'lint', -- Async linter spawner
@@ -27,25 +27,24 @@ vim.pack.add({
 })
 
 require('typescript-tools').setup({}) -- Requires `npm i -g typescript`
-require('lazydev').setup({
-	library = {
-		{ path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-	},
-})
-vim.lsp.enable('lua_ls')  -- Requires `lua-language-server` in $PATH
-vim.lsp.enable('jsonls')  -- Requires `npm i -g vscode-langservers-extracted`
+require('lazydev').setup({})
+vim.lsp.enable('lua_ls') -- Requires `lua-language-server` in $PATH
+vim.lsp.enable('jsonls') -- Requires `npm i -g vscode-langservers-extracted`
 vim.lsp.enable('tofu_ls') -- Requires `tofu` in $PATH
-vim.lsp.enable('svelte')  -- Requires `npm i -g svelte-language-server`
+vim.lsp.enable('svelte') -- Requires `npm i -g svelte-language-server`
 
 -- Linters
-require('lint').linters_by_ft = {
+local lint = require('lint')
+lint.linters.eslint_d.args = '--flag unstable_native_nodejs_ts_config' -- Support for configs with ts extension, see https://eslint.org/docs/latest/use/configure/configuration-files#native-typescript-support
+lint.linters_by_ft = {
+	javascript = { 'eslint_d' }, -- Requires`npm i -g eslint_d`
 	typescript = { 'eslint_d' }, -- Requires`npm i -g eslint_d`
 }
 
 local lint_modifiable = function()
 	-- Only run the linter in buffers that you can modify (i.e. not LSP popups)
 	if vim.bo.modifiable then
-		require('lint').try_lint()
+		lint.try_lint()
 	end
 end
 
@@ -56,9 +55,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
 	callback = lint_modifiable,
 })
 
-
 local conform = require('conform')
-conform.setup({
+local conformConfig = {
 	lsp_format = 'fallback',
 	formatters_by_ft = {
 		lua = { 'stylua' },
@@ -69,14 +67,16 @@ conform.setup({
 		timeout_ms = 500,
 		lsp_format = 'fallback',
 	},
-})
-conform.formatters_by_ft.javascriptreact = conform.formatters_by_ft.javascript;
-conform.formatters_by_ft.typescript = conform.formatters_by_ft.javascript;
-conform.formatters_by_ft.typescriptreact = conform.formatters_by_ft.javascript;
+}
+conformConfig.formatters_by_ft.javascriptreact = conformConfig.formatters_by_ft.javascript
+conformConfig.formatters_by_ft.typescript = conformConfig.formatters_by_ft.javascript
+conformConfig.formatters_by_ft.typescriptreact = conformConfig.formatters_by_ft.javascript
+
+conform.setup(conformConfig)
 
 vim.keymap.set('n', '<leader>ll', lint_modifiable)
 vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>lf', require('conform').format)
+vim.keymap.set('n', '<leader>lf', conform.format)
 vim.keymap.set('n', '<leader>]', vim.diagnostic.goto_next) -- TODO: Replace with non-deprecated alternative
 vim.keymap.set('n', '<leader>[', vim.diagnostic.goto_prev) -- TODO: Replace with non-deprecated alternative
 vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action)
