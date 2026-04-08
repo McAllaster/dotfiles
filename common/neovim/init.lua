@@ -43,22 +43,10 @@ vim.pack.add({
 	{
 		name = 'plenary',
 		src = 'https://github.com/nvim-lua/plenary.nvim',
-		version = 'b9fd5226c2f76c951fc8ed5923d85e4de065e509',
 	},
 	{
 		name = 'treesitter',
 		src = 'https://github.com/nvim-treesitter/nvim-treesitter',
-		version = '42fc28ba918343ebfd5565147a42a26580579482',
-	},
-})
-
-require('nvim-treesitter.configs').setup({
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
-	indent = {
-		enable = true,
 	},
 })
 

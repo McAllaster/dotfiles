@@ -2,27 +2,22 @@ vim.pack.add({
 	{
 		name = 'lspconfig', -- Common LSP configurations
 		src = 'https://github.com/neovim/nvim-lspconfig',
-		version = 'ef73a4f2a1ddf0439eb97b46de2aab265ddba1cd',
 	},
 	{
 		name = 'typescript-tools', -- Typescript LSP
 		src = 'https://github.com/pmizio/typescript-tools.nvim',
-		version = 'bf11d98ad5736e1cbc1082ca9a03196d45c701f1',
 	},
 	{
 		name = 'lazydev', -- Lua setup by someone smarter than me
 		src = 'https://github.com/folke/lazydev.nvim',
-		version = '5231c62aa83c2f8dc8e7ba957aa77098cda1257d',
 	},
 	{
 		name = 'lint', -- Async linter spawner
 		src = 'https://github.com/mfussenegger/nvim-lint',
-		version = '0864f81c681e15d9bdc1156fe3a17bd07db5a3ed',
 	},
 	{
 		name = 'conform', -- Powerful formatter
 		src = 'https://github.com/stevearc/conform.nvim',
-		version = '3bad87250ed85246fe8c5bc10005ab5a6289ae4c',
 	},
 })
 
@@ -35,7 +30,6 @@ vim.lsp.enable('svelte') -- Requires `npm i -g svelte-language-server`
 
 -- Linters
 local lint = require('lint')
-lint.linters.eslint_d.args = '--flag unstable_native_nodejs_ts_config' -- Support for configs with ts extension, see https://eslint.org/docs/latest/use/configure/configuration-files#native-typescript-support
 lint.linters_by_ft = {
 	javascript = { 'eslint_d' }, -- Requires`npm i -g eslint_d`
 	typescript = { 'eslint_d' }, -- Requires`npm i -g eslint_d`

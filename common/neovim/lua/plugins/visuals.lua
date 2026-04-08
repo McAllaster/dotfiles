@@ -2,12 +2,10 @@ vim.pack.add({
 	{
 		name = 'catppuccin',
 		src = 'https://github.com/catppuccin/nvim',
-		version = 'f19cab18ec4dc86d415512c7a572863b2adbcc18',
 	},
 	{
 		name = 'auto-dark-mode',
-		src = 'https://github.com/FineFindus/auto-dark-mode.nvim',
-		version = '0e9a68b91c413b8f96201177da2601fd7e005b7c',
+		src = 'https://github.com/f-person/auto-dark-mode.nvim',
 	},
 })
 
